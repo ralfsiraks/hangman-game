@@ -1,0 +1,95 @@
+@font-face {
+  font-family: fonty;
+  src: url(BebasNeue-Regular.woff);
+}
+
+* {
+  background-color: rgb(25, 27, 29);
+  font-family: fonty;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.letters-container {
+  display: flex;
+  justify-content: center;
+  width: 99%;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 100px;
+  margin: 0.1%;
+}
+.letter {
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  text-align: center;
+  margin: 10px;
+  font-size: 70px;
+  width: 6%;
+}
+.letters-div {
+  display: flex;
+  width: 60%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-div {
+  display: flex;
+  margin-top: 0.1%;
+  margin-bottom: 0.1%;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  color: white;
+  font-size: 60px;
+}
+
+.word-div {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#word {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  color: white;
+  font-size: 90px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pics-div {
+  position: fixed;
+  width: 40%;
+  top: 20px;
+  right: 10px;
+  display: flex;
+  justify-content: right;
+}
+.pic {
+  margin: 1%;
+  height: 10%;
+  width: 10%;
+}
+.pic-gone {
+  opacity: 0;
+}
