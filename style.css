@@ -1,8 +1,10 @@
+/* Custom fonts */
 @font-face {
   font-family: fonty;
   src: url(BebasNeue-Regular.woff);
 }
 
+/* Dokumenta izskats */
 * {
   background-color: rgb(25, 27, 29);
   font-family: fonty;
@@ -13,17 +15,11 @@
   flex-direction: column;
 }
 
+/* Burtu pogu izskats */
 .letters-container {
   display: flex;
   justify-content: center;
   width: 99%;
-}
-
-h1 {
-  color: white;
-  text-align: center;
-  font-size: 100px;
-  margin: 0.1%;
 }
 .letter {
   cursor: pointer;
@@ -42,6 +38,15 @@ h1 {
   justify-content: center;
 }
 
+/* Virsraksta izskats */
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 100px;
+  margin: 0.1%;
+}
+
+/* Kategorijas teksta izskats */
 .category-div {
   display: flex;
   margin-top: 0.1%;
@@ -58,6 +63,7 @@ h1 {
   font-size: 60px;
 }
 
+/* Vārda izskats */
 .word-div {
   display: flex;
   width: 100%;
@@ -77,9 +83,10 @@ h1 {
   justify-content: center;
 }
 
+/* Dzīvības punktu attēlu izskats */
 .pics-div {
   position: fixed;
-  width: 40%;
+  width: 30%;
   top: 20px;
   right: 10px;
   display: flex;

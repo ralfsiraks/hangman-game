@@ -1,5 +1,6 @@
 `use strict`;
 
+// Definē visus alfabēta burtus
 const alphabet = [
   "a",
   "b",
@@ -29,6 +30,7 @@ const alphabet = [
   "z",
 ];
 
+// Iegūst vajadzīgos elementus
 const hangman = document.querySelector(`h1`);
 const categories = [`programming languages`, `cities`, `music`, `movies`];
 const lettersDiv = document.querySelector(`.letters-div`);
@@ -37,12 +39,14 @@ const wordText = document.querySelector(`#word`);
 const hintText = document.querySelector(`#hint`);
 let lives = 6;
 
+// Izveido tēmas un vārdus
 const wordsmap = new Map();
 wordsmap.set(`programming languages`, [`javascript`, `c`, `php`]);
 wordsmap.set(`cities`, [`riga`, `washington`, `amsterdam`]);
 wordsmap.set(`music`, [`note`, `guitar`, `spotify`]);
 wordsmap.set(`movies`, [`batman`, `avengers`, `hollywood`]);
 
+// Uzģenerē visas burtu pogas
 alphabet.forEach((letter) => {
   lettersDiv.insertAdjacentHTML(
     `beforeend`,
@@ -50,6 +54,7 @@ alphabet.forEach((letter) => {
   );
 });
 
+// Izvēlās random tēmu un vārdu piešķirot vārdam arī aprakstu
 const randomCat = categories[Math.floor(Math.random() * categories.length)];
 categoryText.textContent += ` ${randomCat}`;
 const randomWord = [Math.floor(Math.random() * wordsmap.get(randomCat).length)];
@@ -81,14 +86,17 @@ const chooseCatWordHint = function (word) {
 };
 chooseCatWordHint(newWord);
 
+// Galvenā pārbaude uz katras burta pogas uzspiešanas
 const allLetters = document.querySelectorAll(`.letter`);
 let currentArr = wordText.textContent.trim().split(` `);
 
 allLetters.forEach((e) => {
   e.addEventListener(`click`, function () {
+    // Pārbauda vai vārds satur izvēlēto burtu
     if (newWord.includes(e.textContent) != true) {
       document.querySelector(`#pic${lives}`).classList.add(`pic-gone`);
       lives--;
+      // Pārbauda vai spēle jau ir zaudēta
       if (lives === 0 || lives < 0) {
         document.querySelectorAll(`div, p, h1, img, body, html`).forEach(
           (e) =>
@@ -98,12 +106,15 @@ allLetters.forEach((e) => {
         hangman.textContent = `YOU LOSE :(`;
         document.querySelectorAll(`button`).forEach((e) => (e.disabled = true));
       }
-    } else
+    }
+    // Pārbauda vai vārds satur izvēlēto burtu
+    else
       [...newWord].forEach(function (el, i) {
         if (el === e.textContent) {
           currentArr[i] = el;
           wordText.textContent = currentArr.toString().replaceAll(`,`, `  `);
         }
+        // Pārbauda vai spēle jau ir uzvarēta
         if (!wordText.textContent.includes(`_`)) {
           document.querySelectorAll(`div, p, h1, img, body, html`).forEach(
             (e) =>
