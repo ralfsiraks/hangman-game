@@ -1,3 +1,5 @@
+import { checkFunc, chooseCatWordHint } from "./functions.js";
+
 `use strict`;
 
 // Definē visus alfabēta burtus
@@ -47,13 +49,6 @@ wordsmap.set(`music`, [`note`, `guitar`, `spotify`]);
 wordsmap.set(`movies`, [`batman`, `avengers`, `hollywood`]);
 
 // Uzģenerē visas burtu pogas
-alphabet.forEach((letter) => {
-  lettersDiv.insertAdjacentHTML(
-    `beforeend`,
-    `<button class="letter" id="${letter}">${letter}</button>`
-  );
-});
-
 // Izvēlās random tēmu un vārdu piešķirot vārdam arī aprakstu
 const randomCat = categories[Math.floor(Math.random() * categories.length)];
 categoryText.textContent += ` ${randomCat}`;
@@ -77,56 +72,12 @@ hints.set(`hollywood`, ` The central of modern day cinema in USA`);
 
 const newWord = wordsmap.get(randomCat)[randomWord];
 
-const chooseCatWordHint = function (word) {
-  for (let i = 0; i < word.length; i++) {
-    wordText.textContent += ` _`;
-  }
-
-  hintText.textContent += hints.get(word);
-};
-chooseCatWordHint(newWord);
+chooseCatWordHint(newWord, hints, hintText, wordText);
 
 // Galvenā pārbaude uz katras burta pogas uzspiešanas
 const allLetters = document.querySelectorAll(`.letter`);
 let currentArr = wordText.textContent.trim().split(` `);
 
-allLetters.forEach((e) => {
-  e.addEventListener(`click`, function () {
-    // Pārbauda vai vārds satur izvēlēto burtu
-    if (newWord.includes(e.textContent) != true) {
-      document.querySelector(`#pic${lives}`).classList.add(`pic-gone`);
-      lives--;
-      // Pārbauda vai spēle jau ir zaudēta
-      if (lives === 0 || lives < 0) {
-        document.querySelectorAll(`div, p, h1, img, body, html`).forEach(
-          (e) =>
-            (e.style.backgroundColor = `#ff4d4d
-          `)
-        );
-        hangman.textContent = `YOU LOSE :(`;
-        document.querySelectorAll(`button`).forEach((e) => (e.disabled = true));
-      }
-    }
-    // Pārbauda vai vārds satur izvēlēto burtu
-    else
-      [...newWord].forEach(function (el, i) {
-        if (el === e.textContent) {
-          currentArr[i] = el;
-          wordText.textContent = currentArr.toString().replaceAll(`,`, `  `);
-        }
-        // Pārbauda vai spēle jau ir uzvarēta
-        if (!wordText.textContent.includes(`_`)) {
-          document.querySelectorAll(`div, p, h1, img, body, html`).forEach(
-            (e) =>
-              (e.style.backgroundColor = `#33ff77
-            `)
-          );
-          hangman.textContent = `YOU WIN :)`;
-          document
-            .querySelectorAll(`button`)
-            .forEach((e) => (e.disabled = true));
-        }
-      });
-    e.disabled = true;
-  });
-});
+checkFunc(newWord, hangman, lives, lettersDiv, alphabet, wordText, currentArr);
+
+// Izvēlējos lietot JavaScript kopā ar CSS un HTML, jo JavaScript, man likās visvienkāršākais un efektīvākais veids kā uzbūvēt programmu. HTML un CSS izvēlējos, jo tie ir gandrīz neatņemama sastāvdaļa programmējot ar JavaScript.
